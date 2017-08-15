@@ -1,0 +1,120 @@
+apply from: 'dependency.gradle'
+
+allprojects {
+    apply plugin: 'idea'
+
+    repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    }
+
+
+}
+
+subprojects { subproj ->
+
+    apply plugin: 'java'
+
+    apply plugin: 'eclipse'
+
+    // 用于发布 jar 包到相应服务器
+    apply plugin: 'maven'
+
+    // 由于根下屏蔽了 java 插件，所以把这些方法定义转移到各个子项目下读取
+    apply from: "../utils.gradle"
+
+    version = version
+    group = project_group
+
+    sourceCompatibility = project_jdk
+    targetCompatibility = project_jdk
+
+    buildscript {
+
+        repositories {
+            mavenCentral()
+            maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        }
+        dependencies {
+            classpath(libraries.'springBootGradlePlugin')
+        }
+    }
+
+    jar {
+        excludes = ['**/rebel.xml', '**/.keep']
+
+        doFirst {
+            // 生成jar 包的时候按此规则生成 manifest 文件
+            manifest = defaultManifest([
+                    project: subproj,
+                    projectVendor: project_vendor
+            ])
+        }
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from 'build/docs/javadoc'
+        doFirst {
+            manifest = defaultManifest([
+                    project: subproj,
+                    projectVendor: project_vendor
+            ])
+        }
+    }
+
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+        doFirst {
+            manifest = defaultManifest([
+                    project: subproj,
+                    projectVendor: project_vendor
+            ])
+        }
+    }
+
+    // 编码改为 UTF-8, 否则编译源码的时候会出错
+    // 当然，这个需要根据自己的 java 源码的编码进行调整
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    //
+    artifacts {
+        archives jar
+        // archives javadocJar
+        archives sourcesJar
+    }
+
+    configurations {
+
+        deployerJars
+
+        //
+        // 所有需要忽略的包定义在此
+        //
+        all*.exclude group: 'commons-httpclient'
+        all*.exclude group: 'commons-logging'
+        all*.exclude group: 'commons-beanutils', module: 'commons-beanutils'
+    }
+
+    dependencies {
+        // 用于上传自己项目的jar 包到中心 maven 库
+        deployerJars "org.apache.maven.wagon:wagon-ssh:2.2"
+        //
+        // 引入根目录和各子项目下的libs中的jar包
+        //
+        ext.jarTree = fileTree(dir: 'libs', include: '**/*.jar')
+        ext.rootProjectLibs = new File(rootProject.rootDir, 'libs').getAbsolutePath()
+        ext.jarTree += fileTree(dir: rootProjectLibs, include: '**/*.jar')
+
+    }
+
+    idea{
+        module{
+            inheritOutputDirs = false
+            outputDir = file("${buildDir}/classes/java/main")
+
+            testOutputDir = file("${buildDir}/classes/java/test")
+        }
+    }
+
+}
