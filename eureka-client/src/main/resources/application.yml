@@ -5,4 +5,4 @@ eureka:
 
 words: 你,我,他
 server:
-  port: ${PORT:${SERVER_PORT:0}}
+  port: 2223
