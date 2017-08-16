@@ -3,7 +3,6 @@ apply from: 'dependency.gradle'
 allprojects {
     apply plugin: 'idea'
 
-
     buildscript {
         repositories {
             mavenCentral()
@@ -25,13 +24,7 @@ allprojects {
 
 subprojects { subproj ->
 
-
-
     apply plugin: 'java'
-
-    // 用于发布 jar 包到相应服务器
-    apply plugin: 'maven'
-
 
     // 由于根下屏蔽了 java 插件，所以把这些方法定义转移到各个子项目下读取
     apply from: "../utils.gradle"

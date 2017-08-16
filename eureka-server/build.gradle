@@ -9,6 +9,14 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
+bootJar{
+    manifest = defaultManifest([
+            project: this,
+            projectVendor: project_vendor
+    ])
+}
+
+
 dependencyManagement {
 	imports {
 		mavenBom libraries.'springCloud'
