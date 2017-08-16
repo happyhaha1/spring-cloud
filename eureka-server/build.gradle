@@ -1,8 +1,10 @@
 apply plugin: 'org.springframework.boot'
+apply plugin: "io.spring.dependency-management"
 
 archivesBaseName = 'eureka-server'
 
 dependencies {
+    compile("org.springframework.boot:spring-boot-starter")
 	compile('org.springframework.cloud:spring-cloud-starter-eureka-server')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

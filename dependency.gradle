@@ -12,6 +12,7 @@ ext.versions = [
 ext.libraries = [
         springCloud : "org.springframework.cloud:spring-cloud-dependencies:${versions.springCloudVersion}",
         springBootGradlePlugin: "org.springframework.boot:spring-boot-gradle-plugin:${versions.springBootVersion}",
+        dependencyManagement: "io.spring.gradle:dependency-management-plugin:${versions.dependencyManagementVersion}",
 
         //kotlin pulgin
         kotlinStdlibJre8: "org.jetbrains.kotlin:kotlin-stdlib-jre8:${versions.kotlinVersion}",
