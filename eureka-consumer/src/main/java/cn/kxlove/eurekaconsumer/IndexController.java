@@ -1,5 +1,6 @@
 package cn.kxlove.eurekaconsumer;
 
+import cn.kxlove.eurekaconsumer.service.EurekaClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -22,17 +23,21 @@ public class IndexController {
 
     private final RestTemplate restTemplate;
 
+    private final EurekaClientService eurekaClientService;
+
     @Autowired
-    public IndexController(DiscoveryClient discoveryClient, RestTemplate restTemplate, LoadBalancerClient loadBalancerClient) {
+    public IndexController(DiscoveryClient discoveryClient, RestTemplate restTemplate, LoadBalancerClient loadBalancerClient, EurekaClientService eurekaClientService) {
         this.client = discoveryClient;
         this.restTemplate = restTemplate;
         this.loadBalancerClient = loadBalancerClient;
+        this.eurekaClientService = eurekaClientService;
     }
 
 
     @GetMapping("/dc")
-    public String dc() {
-        return restTemplate.getForEntity("http://EUREKA-CLIENT/add?a=10&b=20", String.class).getBody();
+    public Integer dc() {
+        return eurekaClientService.addService();
+//        return restTemplate.getForEntity("http://EUREKA-CLIENT/add?a=10&b=20", String.class).getBody();
     }
 
 

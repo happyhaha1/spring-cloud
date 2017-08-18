@@ -10,7 +10,7 @@ dependencies {
             'org.springframework.cloud:spring-cloud-starter-ribbon',
             'org.springframework.boot:spring-boot-starter-web',
             'org.springframework.boot:spring-boot-starter-actuator',
-
+            'org.springframework.cloud:spring-cloud-starter-hystrix'
     )
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
