@@ -2,6 +2,8 @@ package cn.kxlove.flywaydb.domain;
 
 import lombok.*;
 
+import javax.persistence.*;
+
 /**
  * @author zhengkaixin
  * @Description:
@@ -12,8 +14,12 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @EqualsAndHashCode
+@Table(name = "users")
 public class User {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(generator = "UUID")
     private String Id;
 
     private String username;

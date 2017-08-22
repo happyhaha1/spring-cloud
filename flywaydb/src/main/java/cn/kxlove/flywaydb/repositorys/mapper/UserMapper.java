@@ -1,9 +1,10 @@
 package cn.kxlove.flywaydb.repositorys.mapper;
 
+import cn.kxlove.flywaydb.MyMapper;
 import cn.kxlove.flywaydb.domain.User;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+import tk.mybatis.mapper.common.Mapper;
 
 /**
  * @author zhengkaixin
@@ -11,11 +12,6 @@ import org.springframework.stereotype.Component;
  * @Date 2017-08-22 13:16
  */
 @Component
-@Mapper
-public interface UserMapper {
+public interface UserMapper extends MyMapper<User> {
 
-    void insert(@Param("user") User user);
-
-
-    User findById(@Param("id") String id);
 }

@@ -1,5 +1,3 @@
-mybatis:
-  mapper-locations: mapper/*Mapper.xml
 spring:
   datasource:
     url: jdbc:h2:file:~/h2/testdb
@@ -8,3 +6,12 @@ spring:
   output:
     ansi:
       enabled: always
+
+
+
+mybatis:
+  mapper-locations: mapper/*Mapper.xml
+  type-aliases-package: cn.kxlove.flywaydb.domain
+mapper:
+  mappers:
+    - cn.kxlove.flywaydb.MyMapper
