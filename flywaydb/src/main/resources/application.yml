@@ -1,0 +1,10 @@
+mybatis:
+  mapper-locations: mapper/*Mapper.xml
+spring:
+  datasource:
+    url: jdbc:h2:file:~/h2/testdb
+    data-username: sa
+    driver-class-name: org.h2.Driver
+  output:
+    ansi:
+      enabled: always
