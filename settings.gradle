@@ -4,4 +4,5 @@ include 'eureka-server'
 include 'eureka-client'
 include 'eureka-consumer'
 include 'eureka-feign'
+include 'flywaydb'
 
