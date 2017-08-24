@@ -1,0 +1,12 @@
+logging:
+    level:
+        cn.kxlove: TRACE
+
+mybatis:
+    type-aliases-package: cn.kxlove.mybatis.domain
+    mapper-locations: classpath:mapper/*.xml
+
+mapper:
+    mappers:
+        - cn.kxlove.mybatis.util.MyMapper
+    not-empty: false
