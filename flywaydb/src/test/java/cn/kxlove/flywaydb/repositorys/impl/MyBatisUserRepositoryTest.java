@@ -8,6 +8,7 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
+import tk.mybatis.mapper.autoconfigure.AutoConfigurationMapper;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -22,6 +23,7 @@ import static org.hamcrest.core.Is.is;
  */
 @RunWith(SpringRunner.class)
 @MybatisTest
+@AutoConfigurationMapper
 @Import(MyBatisUserRepository.class)
 public class MyBatisUserRepositoryTest {
 
