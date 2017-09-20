@@ -11,10 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import tk.mybatis.mapper.autoconfigure.AutoConfigurationMapper;
 
 import java.util.Optional;
-import java.util.UUID;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
 
 /**
  * @author zhengkaixin
@@ -32,10 +28,12 @@ public class MyBatisUserRepositoryTest {
 
     @Test
     public void save() throws Exception {
-        User user = new User(UUID.randomUUID().toString(), "abc");
+        User user = new User();
+        user.setUsername("happyhaha");
         userRepository.save(user);
         Optional<User> userOptional = userRepository.findById(user.getId());
-        assertThat(userOptional.get(), is(user));
+        System.out.println(user.toString());
+        System.out.println(userOptional.get().toString());
     }
 
     @Test
