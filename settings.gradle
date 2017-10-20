@@ -7,4 +7,5 @@ include 'eureka-feign'
 include 'flywaydb'
 include 'mybatis'
 include 'shell'
+include 'remote-shell'
 
