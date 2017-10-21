@@ -1,4 +1,4 @@
-package cn.kxlove.springms.entity;
+package cn.kxlove.entity;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -9,4 +9,6 @@ include 'mybatis'
 include 'shell'
 include 'remote-shell'
 include 'springms-simple-provider-user'
+include 'springms-simple-consumer-movie'
+include 'common-entity'
 
