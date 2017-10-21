@@ -8,4 +8,5 @@ include 'flywaydb'
 include 'mybatis'
 include 'shell'
 include 'remote-shell'
+include 'springms-simple-provider-user'
 

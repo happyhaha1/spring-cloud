@@ -25,7 +25,7 @@ public class IndexController {
     }
 
     @GetMapping("/{userName}")
-    public User Index(@PathVariable String userName) {
+    public User index(@PathVariable String userName) {
         User user = User.builder().username(userName).build();
         userRepository.save(user);
         Optional<User> userOptional = userRepository.findById(user.getId());
