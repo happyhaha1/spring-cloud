@@ -1,4 +1,4 @@
-package cn.kxlove.springms.command;
+package cn.kxlove.command;
 
 /**
  * <p>FastJsonConfig</p>

@@ -1,7 +1,7 @@
-package cn.kxlove.springms.controller;
+package cn.kxlove.controller;
 
-import cn.kxlove.springms.entity.User;
-import cn.kxlove.springms.repository.UserRepository;
+import cn.kxlove.entity.User;
+import cn.kxlove.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
