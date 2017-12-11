@@ -1,0 +1,6 @@
+archivesBaseName = 'hanlp'
+dependencies {
+    compile(
+            'com.hankcs:hanlp:portable-1.3.5'
+    )
+}
