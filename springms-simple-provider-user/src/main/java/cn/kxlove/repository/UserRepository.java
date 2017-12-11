@@ -1,4 +1,4 @@
-package cn.kxlove.springms.repository;
+package cn.kxlove.repository;
 
 import cn.kxlove.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
