@@ -9,6 +9,7 @@ allprojects {
             mavenCentral()
             maven { url "https://repo.spring.io/snapshot" }
             maven { url "https://repo.spring.io/milestone" }
+            jcenter()
         }
         dependencies {
             classpath(libraries.'springBootGradlePlugin')
@@ -21,6 +22,7 @@ allprojects {
         mavenCentral()
         maven { url "https://repo.spring.io/snapshot" }
         maven { url "https://repo.spring.io/milestone" }
+        jcenter()
     }
 }
 
