@@ -13,4 +13,5 @@ include 'springms-simple-consumer-movie'
 include 'common-entity'
 include 'hanlp'
 include 'zhui'
+include 'zhuishu'
 
