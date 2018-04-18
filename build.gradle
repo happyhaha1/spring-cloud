@@ -14,7 +14,6 @@ allprojects {
         }
         dependencies {
             classpath(libraries.'springBootGradlePlugin')
-            classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
         }
     }
 

@@ -7,7 +7,7 @@ archivesBaseName = 'eureka-client'
 
 dependencies {
 	compile(
-            'org.springframework.cloud:spring-cloud-starter-eureka'
+            'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
     )
     compile group: 'commons-io', name: 'commons-io', version: '2.4'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
