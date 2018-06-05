@@ -15,4 +15,5 @@ include 'hanlp'
 include 'zhui'
 include 'zhuishu'
 include 'webflux'
+include 'websockt'
 

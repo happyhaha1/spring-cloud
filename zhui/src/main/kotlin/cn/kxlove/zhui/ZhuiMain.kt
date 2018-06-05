@@ -39,7 +39,7 @@ fun main(args: Array<String>) {
         val atoc = atocs[select.toInt()]
         val chapters = chapters(atoc._id)
         chapters?.subList(0,1)
-        val file = File("/Users/zhengkaixin/Desktop/java/${book.title}.text")
+        val file = File("/Users/zhengkaixin/Desktop/java/${book.title}.txt")
         val fileOutputStream = FileOutputStream(file)
         chapters?.withIndex()?.forEach {
             (index,it) ->
@@ -84,29 +84,34 @@ fun chapters(_id: String): List<Chapter>? {
 }
 
 fun chapterContent(atocs: List<Atoc>,chapter: Chapter,select: Int): String {
-    val link = URLEncoder.encode(chapter.link,"utf-8")
-    val URL = "http://chapterup.zhuishushenqi.com/chapter/$link"
-    val result = HttpClient
-            .get(URL)
-            .queryString("view","chapters")
-            .execute()
-            .asString()
-    val jsonObject = JSON.parseObject(result).getJSONObject("chapter")
-    return if (!jsonObject.getString("body").isNullOrEmpty()) {
-        jsonObject.getString("body")
-    }else if (!jsonObject.getString("cpContent").isNullOrEmpty()) {
-        jsonObject.getString("cpContent")
-    } else {
-        println(jsonObject)
-        val atoc = atocs[select+1]
-        val chapters = chapters(atoc._id)
-        chapters?.forEach { it ->
-            if (it.title == chapter.title) {
-                return chapterContent(atocs, it, select+1)
+    try {
+        val link = URLEncoder.encode(chapter.link,"utf-8")
+        val URL = "http://chapterup.zhuishushenqi.com/chapter/$link"
+        val result = HttpClient
+                .get(URL)
+                .queryString("view","chapters")
+                .execute()
+                .asString()
+        val jsonObject = JSON.parseObject(result).getJSONObject("chapter")
+        return if (!jsonObject.getString("body").isNullOrEmpty()) {
+            jsonObject.getString("body")
+        }else if (!jsonObject.getString("cpContent").isNullOrEmpty()) {
+            jsonObject.getString("cpContent")
+        } else {
+            println(jsonObject)
+            val atoc = atocs[select+1]
+            val chapters = chapters(atoc._id)
+            chapters?.forEach { it ->
+                if (it.title == chapter.title) {
+                    return chapterContent(atocs, it, select+1)
+                }
             }
+            throw RuntimeException()
         }
-        throw RuntimeException()
+    }catch (e: Exception) {
+        println(chapter.title)
     }
+    return ""
 }
 
 class ApiResult {
